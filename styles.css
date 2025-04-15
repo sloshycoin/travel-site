@@ -36,6 +36,8 @@ header ul {
 header {
     display: flex;
     justify-content: center;
+    position: fixed;
+    width: 100%;
 }
 
 header ul {
