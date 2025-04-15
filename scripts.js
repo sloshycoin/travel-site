@@ -19,6 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const filteredRecommendations = [];
 
         recommendationsData.countries.forEach(country => {
+            if (country.name.toLowerCase().includes(query)) {
+                filteredRecommendations.push({ name: country.name, url: country.imageUrl, description: country.description });
+            } else if (query === 'country') {
+                filteredRecommendations.push({ name: country.name, url: country.imageUrl, description: country.description });
+            }
             country.cities.forEach(city => {
                 if (city.name.toLowerCase().includes(query)) {
                     filteredRecommendations.push({ name: city.name, url: city.imageUrl, description: city.description });
@@ -29,11 +34,15 @@ document.addEventListener('DOMContentLoaded', () => {
         recommendationsData.temples.forEach(temple => {
             if (temple.name.toLowerCase().includes(query)) {
                 filteredRecommendations.push({ name: temple.name, url: temple.imageUrl, description: temple.description });
+            } else if (query === 'temple') {
+                filteredRecommendations.push({ name: temple.name, url: temple.imageUrl, description: temple.description });
             }
         });
 
         recommendationsData.beaches.forEach(beach => {
             if (beach.name.toLowerCase().includes(query)) {
+                filteredRecommendations.push({ name: beach.name, url: beach.imageUrl, description: beach.description });
+            } else if (query === 'beach') {
                 filteredRecommendations.push({ name: beach.name, url: beach.imageUrl, description: beach.description });
             }
         });
