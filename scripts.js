@@ -10,102 +10,195 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((error) => console.error("Error fetching data:", error));
 
-  document
-    .getElementById("search-button")
-    .addEventListener("click", function () {
-      const query = document.getElementById("search-input").value.toLowerCase();
-      const resultsContainer = document.getElementById("search-results");
-      resultsContainer.innerHTML = "";
+  document.getElementById("search-button").addEventListener("click", () => {
+    const query = document.getElementById("search-input").value.toLowerCase();
+    const resultsContainer = document.getElementById("search-results");
+    resultsContainer.innerHTML = "";
 
-      // Filter recommendations based on the search query
-      const filteredRecommendations = [];
+    // Filter recommendations based on the search query
+    const filteredRecommendations = [];
 
-      recommendationsData.countries.forEach((country) => {
-        if (country.name.toLowerCase().includes(query)) {
-          country.cities.forEach((city) => {
+    recommendationsData.countries.forEach((country) => {
+      if (country.name.toLowerCase().includes(query)) {
+        country.cities.forEach((city) => {
+          filteredRecommendations.push({
+            name: city.name,
+            url: city.imageUrl,
+            description: city.description,
+          });
+        });
+      } else {
+        country.cities.forEach((city) => {
+          if (city.name.toLowerCase().includes(query)) {
             filteredRecommendations.push({
               name: city.name,
               url: city.imageUrl,
               description: city.description,
             });
-          });
-        } else {
-          country.cities.forEach((city) => {
-            if (city.name.toLowerCase().includes(query)) {
-              filteredRecommendations.push({
-                name: city.name,
-                url: city.imageUrl,
-                description: city.description,
-              });
-            }
-          });
-        }
-      });
-
-      recommendationsData.temples.forEach((temple) => {
-        if (temple.name.toLowerCase().includes(query)) {
-          filteredRecommendations.push({
-            name: temple.name,
-            url: temple.imageUrl,
-            description: temple.description,
-          });
-        } else if (query.includes("temple")) {
-          filteredRecommendations.push({
-            name: temple.name,
-            url: temple.imageUrl,
-            description: temple.description,
-          });
-        }
-      });
-
-      recommendationsData.beaches.forEach((beach) => {
-        if (beach.name.toLowerCase().includes(query)) {
-          filteredRecommendations.push({
-            name: beach.name,
-            url: beach.imageUrl,
-            description: beach.description,
-          });
-        } else if (query.includes("beach")) {
-          filteredRecommendations.push({
-            name: beach.name,
-            url: beach.imageUrl,
-            description: beach.description,
-          });
-        }
-      });
-
-      // Display the filtered recommendations in the dropdown
-      if (filteredRecommendations.length > 0) {
-        filteredRecommendations.forEach((result) => {
-          const resultItem = document.createElement("div");
-          resultItem.classList.add("result-item");
-
-          const link = document.createElement("a");
-          link.textContent = result.name;
-          link.style.color = "black";
-
-          const image = document.createElement("img");
-          image.src = result.url;
-          image.width = "400px";
-          image.height = "400px";
-          image.alt = result.name;
-
-          const description = document.createElement("p");
-          description.textContent = result.description;
-
-          resultItem.appendChild(link);
-          resultItem.appendChild(image);
-          resultItem.appendChild(description);
-          resultsContainer.appendChild(resultItem);
+          }
         });
-        resultsContainer.style.display = "block";
-      } else {
-        const noResults = document.createElement("p");
-        noResults.textContent = "No recommendations found.";
-        resultsContainer.appendChild(noResults);
-        resultsContainer.style.display = "block";
       }
     });
+
+    recommendationsData.temples.forEach((temple) => {
+      if (temple.name.toLowerCase().includes(query)) {
+        filteredRecommendations.push({
+          name: temple.name,
+          url: temple.imageUrl,
+          description: temple.description,
+        });
+      } else if (query.includes("temple")) {
+        filteredRecommendations.push({
+          name: temple.name,
+          url: temple.imageUrl,
+          description: temple.description,
+        });
+      }
+    });
+
+    recommendationsData.beaches.forEach((beach) => {
+      if (beach.name.toLowerCase().includes(query)) {
+        filteredRecommendations.push({
+          name: beach.name,
+          url: beach.imageUrl,
+          description: beach.description,
+        });
+      } else if (query.includes("beach")) {
+        filteredRecommendations.push({
+          name: beach.name,
+          url: beach.imageUrl,
+          description: beach.description,
+        });
+      }
+    });
+
+    // Display the filtered recommendations in the dropdown
+    if (filteredRecommendations.length > 0) {
+      filteredRecommendations.forEach((result) => {
+        const resultItem = document.createElement("div");
+        resultItem.classList.add("result-item");
+
+        const link = document.createElement("a");
+        link.textContent = result.name;
+        link.style.color = "black";
+
+        const image = document.createElement("img");
+        image.src = result.url;
+        image.width = "400px";
+        image.height = "400px";
+        image.alt = result.name;
+
+        const description = document.createElement("p");
+        description.textContent = result.description;
+
+        resultItem.appendChild(link);
+        resultItem.appendChild(image);
+        resultItem.appendChild(description);
+        resultsContainer.appendChild(resultItem);
+      });
+      resultsContainer.style.display = "block";
+    } else {
+      const noResults = document.createElement("p");
+      noResults.textContent = "No recommendations found.";
+      resultsContainer.appendChild(noResults);
+      resultsContainer.style.display = "block";
+    }
+  });
+
+  document.getElementById("search-input").addEventListener("keydown", () => {
+    const query = document.getElementById("search-input").value.toLowerCase();
+    const resultsContainer = document.getElementById("search-results");
+    resultsContainer.innerHTML = "";
+
+    // Filter recommendations based on the search query
+    const filteredRecommendations = [];
+
+    recommendationsData.countries.forEach((country) => {
+      if (country.name.toLowerCase().includes(query)) {
+        country.cities.forEach((city) => {
+          filteredRecommendations.push({
+            name: city.name,
+            url: city.imageUrl,
+            description: city.description,
+          });
+        });
+      } else {
+        country.cities.forEach((city) => {
+          if (city.name.toLowerCase().includes(query)) {
+            filteredRecommendations.push({
+              name: city.name,
+              url: city.imageUrl,
+              description: city.description,
+            });
+          }
+        });
+      }
+    });
+
+    recommendationsData.temples.forEach((temple) => {
+      if (temple.name.toLowerCase().includes(query)) {
+        filteredRecommendations.push({
+          name: temple.name,
+          url: temple.imageUrl,
+          description: temple.description,
+        });
+      } else if (query.includes("temple")) {
+        filteredRecommendations.push({
+          name: temple.name,
+          url: temple.imageUrl,
+          description: temple.description,
+        });
+      }
+    });
+
+    recommendationsData.beaches.forEach((beach) => {
+      if (beach.name.toLowerCase().includes(query)) {
+        filteredRecommendations.push({
+          name: beach.name,
+          url: beach.imageUrl,
+          description: beach.description,
+        });
+      } else if (query.includes("beach")) {
+        filteredRecommendations.push({
+          name: beach.name,
+          url: beach.imageUrl,
+          description: beach.description,
+        });
+      }
+    });
+
+    // Display the filtered recommendations in the dropdown
+    if (filteredRecommendations.length > 0) {
+      filteredRecommendations.forEach((result) => {
+        const resultItem = document.createElement("div");
+        resultItem.classList.add("result-item");
+
+        const link = document.createElement("a");
+        link.textContent = result.name;
+        link.style.color = "black";
+
+        const image = document.createElement("img");
+        image.src = result.url;
+        image.width = "400px";
+        image.height = "400px";
+        image.alt = result.name;
+
+        const description = document.createElement("p");
+        description.textContent = result.description;
+
+        resultItem.appendChild(link);
+        resultItem.appendChild(image);
+        resultItem.appendChild(description);
+        resultsContainer.appendChild(resultItem);
+      });
+      resultsContainer.style.display = "block";
+    } else {
+      const noResults = document.createElement("p");
+      noResults.textContent = "No recommendations found.";
+      resultsContainer.appendChild(noResults);
+      resultsContainer.style.display = "block";
+    }
+  });
 
   document
     .getElementById("reset-button")
@@ -113,7 +206,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("search-input").value = "";
       document.getElementById("search-results").innerHTML = "";
       document.getElementById("search-results").style.display = "none";
-      alert("Search reset");
     });
 });
 
