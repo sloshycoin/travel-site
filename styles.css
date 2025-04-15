@@ -17,6 +17,7 @@ header nav {
     justify-content: center; /* Center the navigation items */
     align-items: center;
     padding: 0 20px;
+    width: 100%;
 }
 
 header .logo {
@@ -62,21 +63,54 @@ header ul li a:hover {
 main {
     display: flex;
     justify-content: center;
-    align-items: center; /* Align items to the top */
-    width: 80%; /* Set a fixed width */
-    max-width: 800px; /* Optional: Set a max-width */
-    height: 400px; /* Set a fixed height */
-    margin: 5px; /* Center horizontally with some margin at the top */
-    padding: 10px;
-    min-height: 100vh; /* Ensure the main element takes at least the full viewport height */
+    padding: 10%;
+    min-height: 80vh; /* Ensure the main element takes at least the full viewport height */
 }
 
 main h1 {
     color: #333;
+    font-size: 2.5em;
+    text-align: center;
+}
+
+main h2 {
+    color: #333;
+    font-size: 2em;
+    text-align: center;
 }
 
 main p {
     color: #666;
+    font-size: 1em;
+    text-align: center;
+}
+
+section .description {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+section ul {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+section ul li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+section ul li strong {
+    color: #333;
 }
 
 /* Contact Form Styles */
@@ -97,7 +131,6 @@ main p {
 #contact-form textarea {
     width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -665,6 +698,7 @@ header ul li a:hover {
 #contact {
     width: 100%;
     max-width: 600px; /* Set a max-width for the contact section */
+    max-height: 600px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add some styling */
     background-color: #fff; /* Optional: Add background color */
@@ -703,4 +737,17 @@ header ul li a:hover {
 
 #contact button:hover {
     background-color: #0056b3;
+}
+
+section#about {
+    width: 90%;
+    height: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add some styling */
+    background-color: #fff; /* Optional: Add background color */
+    border-radius: 8px; /* Optional: Add border radius */
+}
+
+section#about p {
+    padding: 20px;
+    line-height: 1.6;
 }

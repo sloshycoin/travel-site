@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let recommendationsData = [];
 
     // Fetch the recommendations data
-    fetch('db.json')
+    fetch('server/db.json')
         .then(response => response.json())
         .then(data => {
             recommendationsData = data;
